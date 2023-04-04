@@ -1,81 +1,296 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import 'typed.js'
 import Card from '../components/Card.astro';
+
+ interface Props {
+	timePeriod: string;
+	subject: string;
+	place: string;
+	detail: string;
+}
+
+const skills = [
+	{skill: 'HTML', fluency: 85, width: 'w-h'},
+	{skill: 'CSS', fluency: 75, width: 'w-f'},
+	{skill: 'SaSS', fluency: 75, width: 'w-f'},
+	{skill: 'TailwindCSS', fluency: 80, width: 'w-f'},
+	{skill: 'Web Design', fluency: 65, width: 'w-d'},
+	{skill: 'Javascript', fluency: 65, width: 'w-d'},
+	{skill: 'Typescript', fluency: 75, width: 'w-e'},
+	{skill: 'Angular', fluency: 75, width: 'w-f'},
+	{skill: 'Astro', fluency: 60, width: 'w-c'},
+	{skill: 'NestJs', fluency: 70, width: 'w-e'},
+	{skill: 'UI Design(Figma)', fluency: 55, width: 'w-b'},
+
+]
+
+const resumeData: Props[] = [
+	{
+		timePeriod: '2012-2018',
+		subject: 'Secondary School',
+		place: 'Bamenda',
+		detail: "I was a secondary student at the Presbyterian Secondary Nkwen In Bamenda. I got my Ordinary Level Certificate whilst being a student there"
+	},
+	{
+		timePeriod: '2018-2020',
+		subject: 'High School',
+		place: 'Douala',
+		detail: "Attended Government Bilingual High School Bonaberi. I later got my Advanced Level Certificate towards the end of 2020 from this school"
+	},
+	{
+		timePeriod: '2020-Present',
+		subject: 'Software Engineering',
+		place: 'Buea',
+		detail: "Been an Engineering student at the university of Buea since November 2020. Will be completing the program by the June of 2024"
+	},
+	{
+		timePeriod: 'June 2022-November 2022',
+		subject: 'Internship',
+		place: 'Buea',
+		detail: "I interned at Ciniter, a local Fintech startup here in Buea. I worked as a Web developer with other interns and senior developers. "
+	}
+]
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
-	</main>
-</Layout>
+<Layout title="YimnaiDev Portfolio">
 
-<style>
-	main {
-		margin: auto;
-		padding: 1.5rem;
-		max-width: 60ch;
-	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		border: 1px solid rgba(var(--accent), 25%);
-		background-color: white;
-		padding: 1rem;
-		border-radius: 0.4rem;
-	}
-	.instructions code {
-		font-size: 0.875em;
-		font-weight: bold;
-		background: rgba(var(--accent), 12%);
-		color: rgb(var(--accent));
-		border-radius: 4px;
-		padding: 0.3em 0.45em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-	}
-</style>
+	<client-only>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js" integrity="sha512-hIlMpy2enepx9maXZF1gn0hsvPLerXoLHdb095CmRY5HG3bZfN7XPBZ14g+TUDH1aGgfLyPHmY9/zuU53smuMw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script>
+			import Typed from 'typed.js'
+			const typedText = new Typed('#typed-text', {
+			strings: ["I'm", 'A', 'Fullstack Web Developer'],
+			typeSpeed: 100,
+			backSpeed: 100,
+			loop: true,
+			smartBackspace: true
+
+		})
+		typedText.start()
+		</script>
+	</client-only>
+
+	<main class="w-full flex md:flex-row flex-col items-start justify-center relative">
+		<aside class="md:w-[25%] w-full md:h-screen bg-dark-green flex md:flex-col md:items-center md:justify-start md:space-y-3 md:py-8 py-3 px-3 item-center justify-between md:fixed md:left-0">
+			<div class="border-solid border-6 border-dark-gray rounded-full bg-transparent hidden md:block">
+				<img src="https://harnishdesign.net/demo/react/simone/demo/images/profile.jpg" alt="Yimnai Nerus" class="rounded-full">
+			</div>
+			<div class="font-bold text-xl text-white text-center">
+				Yimnai Nerus Zaumu
+			</div>
+			<div class="hidden md:flex flex-col items-center justify-center space-y-6 mt-6">
+				<a href="#" class="text-white text-xl">Home</a>
+				<a href="#" class="text-white text-xl">About Me</a>
+				<a href="#" class="text-white text-xl">What I do</a>
+				<a href="#" class="text-white text-xl">Resume</a>
+				<a href="#" class="text-white text-xl">Portfolio</a>
+				<a href="#" class="text-white text-xl">Contact</a>
+			</div>
+			<!-- Social Icons -->
+			<div class="flex items-center justify-center md:space-x-8 space-x-3 md:fixed md:bottom-3">
+				<img src="/twitter.svg" alt="Twitter icon" class="w-6 h-6">
+				<img src="/linkedin.svg" alt="Twitter icon" class="w-6 h-6">
+				<img src="/github.svg" alt="Twitter icon" class="w-6 h-6">
+				<img src="/hamburger-menu.svg" alt="More" class="w-10 md:hidden block">
+			</div>
+		</aside>
+		<section class="flex flex-col items-start justify-center md:w-[75%] w-full h-auto md:right-0 md:absolute overflow-y-scroll">
+			<div class="w-full flex items-center justify-center space-y-4 relative">
+				<div class="w-full h-screen bg-hero-image bg-cover brightness-50">
+				</div>
+				<div class="flex flex-col items-center justify-center space-y-3 absolute">
+					<h1 class="text-white text-4xl font-bold">Welcome</h1>
+					<p id="typed-text" class="text-white text-7xl text-center font-bold">I'm a Fullstack Web Developer</p>
+					<h1 class="text-white text-3xl font-light">Based in Buea, Cameroon</h1>
+					<a href="#" class="rounded-3xl py-3 px-6 text-bright-green font-bold hover:animate-btn-transform border-solid border-2 border-bright-green">Hire Me</a>
+				</div>
+				<img src="/down_arrow.svg" alt="Down Arrow" class="w-10 h-10 absolute bottom-0 animate-blink-arrow cursor-pointer">
+			</div>
+			<div class="w-full bg-white flex flex-col justify-center items-center space-y-12">
+				<div class="flex flex-col items-center justify-center space-y-2  mt-24">
+					<h1 class="font-bold text-dark-green text-4xl">KNOW ME MORE</h1>
+					<span class="h-1 w-28 bg-bright-green"></span>
+				</div>
+				<div class="w-[90%] mx-auto flex md:flex-row flex-col items-start justify-center md:space-x-3 space-x-0 md:space-y-0 space-y-3">
+					<div class="md:w-[60%] w-full py-2 space-y-4">
+						<h1 class="font-bold text-dark-green text-3xl">I'm <span class="text-bright-green">Yimnai Nerus,</span> a Web Developer</h1>
+						<p class="text-dark-gray font-mono dark:text-light-gray">I help you build brand for your business at an affordable price. Thousands of clients have procured exceptional results while working with our dedicated team. when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+
+							Delivering work within time and budget which meets client’s requirements is our moto. Lorem Ipsum has been the industry's standard dummy text ever when an unknown printer took a galley.</p>
+					</div>
+					<div class="md:w-[40%] w-full py-2 space-y-4">
+						<h1>
+							<p class="border-solid border-b-2 border-b-light-gray pb-3 text-dark-gray text-xl"><span class="text-dark-greem font-bold">Name: </span> Yimnai Nerus</p>
+						</h1>
+						<h1>
+							<a class="border-solid border-b-2 border-b-light-gray pb-3 text-bright-green text-xl" href="mailto:neruszaumuy@gmail.com"><span class="text-dark-green font-bold">Email: </span> &nbsp; neruszaumuy@gmail.com</a>
+						</h1>
+						<h1>
+							<p class="border-solid border-b-2 border-b-light-gray pb-3 text-dark-gray text-xl"><span class="text-dark-greem font-bold">Age: </span> 22</p>
+						</h1>
+						<h1>
+							<p class="border-solid border-b-2 border-b-light-gray pb-3 text-dark-gray text-xl"><span class="text-dark-greem font-bold">From: </span> Buea, Cameroon</p>
+						</h1>
+					</div>
+				</div>
+			</div>
+			<div class="w-[50%] mx-auto py-4 my-4 flex items-center justify-between dark:bg-dark-gray">
+				<span class="flex flex-col items-center justify-center">
+					<h1 class="text-6xl font-bold text-dark-green">8+</h1>
+					<h1 class="text-dark-gray">Months of Experience</h1>
+				</span>
+				<span class="w-1 h-24 bg-bright-green dark:bg-dark-gray"></span>
+				<span class="flex flex-col items-center justify-center">
+					<h1 class="text-6xl font-bold text-dark-green">5+</h1>
+					<h1 class="text-dark-gray">Projects Done</h1>
+				</span>
+			</div>
+
+			<div class="w-[90%] mx-auto py-4 mt-4">
+				<div class="flex flex-col items-center justify-center space-y-2  mt-24">
+					<h1 class="font-bold text-dark-green text-4xl">RESUME</h1>
+					<span class="h-1 w-28 bg-bright-green"></span>
+				</div>
+				<div class="w-full mt-6 flex items-center justify-center flex-wrap py-2 px-2">
+					{resumeData.map((item: Props) => (
+						<Card timePeriod={item.timePeriod} place={item.place} detail={item.detail} subject={item.subject}/>
+					))}
+				</div>
+			</div>
+			<div class="w-[90%] mx-auto">
+				<div class="flex flex-col items-center justify-center space-y-2  mt-24">
+					<h1 class="font-bold text-dark-green text-4xl">MY SKILLS</h1>
+					<span class="h-1 w-28 bg-bright-green"></span>
+				</div>
+				<div class="w-full flex md:flex-row flex-col items-start justify-between">
+					<div class="md:w-[45%] w-full flex flex-col items-center justify-center space-y-3 py-3">
+						{
+							skills.slice(0, 4).map((skill: {skill: string; fluency: number, width: string}) => (
+							<span class="w-full flex items-center justify-between">
+								<span class="text-dark-green font-bold text-xl">{skill.skill}</span>
+								<span class="text-dark-green">{skill.fluency}%</span>
+							</span>
+							<span class="w-full h-2 rounded-[20px] bg-dark-gray flex">
+								<span class={`${skill.width} h-full rounded-l-md bg-bright-green`}></span>
+							</span>
+							))
+						}
+					</div>
+					<div class="md:w-[45%] w-full flex flex-col items-center justify-center space-y-3 py-3">
+						{
+							skills.slice(5, 9).map((skill: {skill: string; fluency: number, width: string}) => (
+							<span class="w-full flex items-center justify-between">
+								<span class="text-dark-green font-bold text-xl">{skill.skill}</span>
+								<span class="text-dark-green">{skill.fluency}%</span>
+							</span>
+							<span class="w-full h-2 rounded-[20px] bg-dark-gray flex">
+								<span class={`${skill.width} h-full rounded-l-md bg-bright-green`}></span>
+							</span>
+							))
+						}
+					</div>
+				</div>
+
+				<div class="w-[90%] mx-auto">
+					<div class="flex flex-col items-center justify-center space-y-2  mt-24">
+						<h1 class="font-bold text-dark-green text-4xl">MY WORK</h1>
+						<span class="h-1 w-28 bg-bright-green"></span>
+					</div>
+					<div class="w-full py-3 grid md:grid-cols-3 sm:grid-cols-2 gap-3">
+						<div class="row-span-1 rounded-md shadow-md  relative group">
+							<img src="/zajoe_portfolio.png" alt="Za Joe" class="h-full w-full object-cover object-center rounded-md cursor-pointer ">
+							<div class="absolute hover:backdrop-brightness-50 z-50 w-full h-full top-0 hidden group-hover:flex flex-col items-center justify-center space-y-3">
+								<p class="text-white text-xl font-bold">ZaJoe Portfolio</p>
+								<span class="flex items-center justify-center space-x-4">
+									<a href="https://github.com/Nerus-Zaumu/zaumu-joe-portfolio" target="_blank"><img src="/github.svg" alt="Github" class="w-8 h-8 cursor-pointer"></a>
+								</span>
+							</div>
+						</div>
+						<div class="md:row-span-2 sm:row-span-3 relative group">
+							<img src="/tori-me.png" alt="Tori Me" class="h-full w-full object-cover object-center rounded-md cursor-pointer ">
+							<div class="absolute hover:backdrop-brightness-50 z-50 w-full h-full top-0 hidden group-hover:flex flex-col items-center justify-center space-y-3">
+								<p class="text-white text-xl font-bold">DailyEchoes</p>
+								<span class="flex items-center justify-center space-x-4">
+									<a href="https://github.com/Nerus-Zaumu/tori-me" target="_blank"><img src="/github.svg" alt="Github" class="w-8 h-8 cursor-pointer"></a>
+									<a href="https://daily-echoes.vercel.app/" target="_blank"><img src="/link.svg" alt="Github" class="w-8 h-8 cursor-pointer"></a>
+								</span>
+							</div>
+						</div>
+						<div class="md:row-span-1 sm:row-span-3 relative group">
+							<img src="/yimcipe.png" alt="Yimcipe" class="h-full w-full object-cover object-center rounded-md cursor-pointer ">
+							<div class="absolute hover:backdrop-brightness-50 z-50 w-full h-full top-0 hidden group-hover:flex flex-col items-center justify-center space-y-3">
+								<p class="text-white text-xl font-bold">Yimcipe</p>
+								<span class="flex items-center justify-center space-x-4">
+									<a href="https://github.com/Nerus-Zaumu/yimcipe" target="_blank"><img src="/github.svg" alt="Github" class="w-8 h-8 cursor-pointer"></a>
+								</span>
+							</div>
+						</div>
+						<div class="relative group">
+							<img src="/steller-school.png" alt="Steller School" class="h-full w-full object-cover object-center rounded-md cursor-pointer ">
+							<div class="absolute hover:backdrop-brightness-50 z-50 w-full h-full top-0 hidden group-hover:flex flex-col items-center justify-center space-y-3">
+								<p class="text-white text-xl font-bold">Steller School Mobile</p>
+								<span class="flex items-center justify-center space-x-4">
+									<a href="https://github.com/Nerus-Zaumu/steller-school" target="_blank"><img src="/github.svg" alt="Github" class="w-8 h-8 cursor-pointer"></a>
+								</span>
+							</div>
+						</div>
+						<div class="relative group col-span-1">
+							<img src="/tori-me-novice.png" alt="ToriMe" class="h-full w-full object-cover object-center rounded-md cursor-pointer ">
+							<div class="absolute hover:backdrop-brightness-50 z-50 w-full h-full top-0 hidden group-hover:flex flex-col items-center justify-center space-y-3">
+								<p class="text-white text-xl font-bold">ToriMe</p>
+								<span class="flex items-center justify-center space-x-4">
+									<a href="https://github.com/Nerus-Zaumu/daily-echoes" target="_blank"><img src="/github.svg" alt="Github" class="w-8 h-8 cursor-pointer"></a>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="w-[90%] mx-auto">
+					<div class="flex flex-col items-center justify-center space-y-2  mt-24">
+						<h1 class="font-bold text-dark-green text-4xl">GET IN TOUCH</h1>
+						<span class="h-1 w-28 bg-bright-green"></span>
+					</div>
+					<div class="w-full flex md:flex-row items-center justify-center flex-col md:space-x-3 md:space-y-0 space-y-4">
+						<div class="md:w-[45%] w-full">
+							<h1 class="text-dark-green font-bold text-2xl">Address</h1>
+							<span>
+								<p class="text-dark-gray text-xl">Federal Quarters</p>
+								<p class="text-dark-gray text-xl">Buea</p>
+								<p class="text-dark-gray text-xl">South West Region</p>
+							</span>
+							<br>
+							<span>
+								<p class="flex items-center justify-start space-x-2 w-full">
+									<object data="/phone.svg" type="image/svg+xml" class="addr w-8 h-8"></object>
+									<span class="text-dark-gray text-xl">(+237) 673-192-386</span>
+								</p>
+								<p class="flex items-center justify-start space-x-2 w-full">
+									<object data="/email.svg" type="image/svg+xml" class="w-8 h-8"></object>
+									<span class="text-dark-gray text-xl">yimnai.dev@outlook.com</span>
+								</p>
+							</span>
+						</div>
+						<div class="md:w-45% w-full flex flex-col pb-5">
+							<form action="" class="w-full flex flex-col items-center justify-center space-y-4 mt-4">
+								<div class="flex md:flex-row flex-col items-center justify-between w-full space-y-3">
+									<input type="text" placeholder="Your Name" class="outline-none rounded-md shadow-sm hover:outline-none border-solid border-2 border-dark-gray md:w-[45%] w-full h-10">
+									<input type="email" placeholder="Your Email" class="outline-none rounded-md shadow-sm hover:outline-none border-solid border-2 border-dark-gray md:w-[45%] w-full h-10" required>
+								</div>
+								<div class="w-full">
+								<textarea name="" id="" cols="30" rows="10" class="outline-none: focus:outline-none border-dark-gray border-solid border-2 rounded-md shadow-sm w-full"></textarea>
+								</div>
+								<div class="w-full flex items-center justify-center">
+									<input type="button" class="py-2 px-4 rounded-md shadow md text-bright-green border-solid border-2 border-bright-green hover:animate-btn-transform" value="Contact">
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</section>
+	</main>
+
+</Layout>
