@@ -51,7 +51,55 @@ const resumeData: Props[] = [
 		detail: "I interned at Ciniter, a local Fintech startup here in Buea. I worked as a Web developer with other interns and senior developers. "
 	}
 ]
+
 ---
+
+<script>
+	(document as Document).addEventListener('scroll', managePath)
+	function managePath() {
+		const sections = ['#home', '#about', '#what', '#resume', '#portfolio', '#contact']
+		const sectionNavs = ['#home-link', '#about-link', '#what-link', '#resume-link', '#portfolio-link', '#contact-link']
+		sections.forEach(sectionId => {
+			const section = document.querySelector(sectionId) as HTMLDivElement
+			const sectionBoundingRect = section.getBoundingClientRect()
+			if(isElementInTopThirdOfViewport(section)) {
+				const sectionNav = document.querySelector(sectionNavs[sections.indexOf(sectionId)]) as HTMLAnchorElement	
+				sectionNav.classList.add('text-bright-green')
+				sectionNav.classList.remove('text-white')
+			}
+			else{
+				const sectionNav = document.querySelector(sectionNavs[sections.indexOf(sectionId)]) as HTMLAnchorElement
+				sectionNav.classList.remove('text-bright-green')
+				sectionNav.classList.add('text-white')
+			}
+		})
+	}
+
+	function isElementInTopThirdOfViewport(elem: HTMLElement): boolean {
+  const scrollY = window.scrollY || window.pageYOffset;
+  const elemTop = elem.getBoundingClientRect().top + scrollY;
+  const viewportHeight = window.innerHeight;
+  return (elemTop + elem.offsetHeight / 3) > scrollY && elemTop < scrollY + (viewportHeight / 3);
+}
+
+document.addEventListener('click', (event: Event) => {
+	const sectionNavs = ['home-link', 'about-link', 'what-link', 'resume-link', 'portfolio-link', 'contact-link']
+	const dropdown = document.querySelector('#dropdown') as HTMLDivElement
+	if((event?.target as HTMLElement).id === 'hamburger-menu' || (event?.target as HTMLElement).id === 'close-hamburger') {
+		dropdown.classList.toggle('flex')
+		dropdown.classList.toggle('hidden')
+	}
+
+	sectionNavs.forEach((sectionNav) => {
+		if((event?.target as HTMLElement).id === sectionNav) {
+			dropdown.classList.toggle('flex')
+			dropdown.classList.toggle('hidden')
+		}
+	})
+
+})
+
+</script>
 
 <Layout title="YimnaiDev Portfolio">
 
@@ -73,58 +121,64 @@ const resumeData: Props[] = [
 
 	<main class="w-full flex md:flex-row flex-col items-start justify-center relative">
 		<aside class="md:w-[25%] w-full md:h-screen bg-dark-green flex md:flex-col md:items-center md:justify-start md:space-y-3 md:py-8 py-3 px-3 item-center justify-between md:fixed md:left-0">
-			<div class="border-solid border-6 border-dark-gray rounded-full bg-transparent hidden md:block">
-				<img src="https://harnishdesign.net/demo/react/simone/demo/images/profile.jpg" alt="Yimnai Nerus" class="rounded-full">
+			<div class="rounded-full hidden md:block border-solid border-8 border-dark-gray">
+				<img src="/face.jpeg" alt="Yimnai Nerus" class="rounded-full w-36 h-36 object-cover object-center">
 			</div>
 			<div class="font-bold text-xl text-white text-center">
 				Yimnai Nerus Zaumu
 			</div>
 			<div class="hidden md:flex flex-col items-center justify-center space-y-6 mt-6">
-				<a href="#" class="text-white text-xl">Home</a>
-				<a href="#" class="text-white text-xl">About Me</a>
-				<a href="#" class="text-white text-xl">What I do</a>
-				<a href="#" class="text-white text-xl">Resume</a>
-				<a href="#" class="text-white text-xl">Portfolio</a>
-				<a href="#" class="text-white text-xl">Contact</a>
+				<a href="#home" class="text-white text-xl" id="home-link">Home</a>
+				<a href="#about" class="text-white text-xl" id="about-link">About Me</a>
+				<a href="#what" class="text-white text-xl" id="what-link">What I do</a>
+				<a href="#resume" class="text-white text-xl" id="resume-link">Resume</a>
+				<a href="#portfolio" class="text-white text-xl" id="portfolio-link">Portfolio</a>
+				<a href="#contact" class="text-white text-xl" id="contact-link">Contact</a>
 			</div>
 			<!-- Social Icons -->
 			<div class="flex items-center justify-center md:space-x-8 space-x-3 md:fixed md:bottom-3">
-				<img src="/twitter.svg" alt="Twitter icon" class="w-6 h-6">
-				<img src="/linkedin.svg" alt="Twitter icon" class="w-6 h-6">
-				<img src="/github.svg" alt="Twitter icon" class="w-6 h-6">
-				<img src="/hamburger-menu.svg" alt="More" class="w-10 md:hidden block">
+				<a href="https://twitter.com/YimnaiNerus" target="_blank">
+					<img src="/twitter.svg" alt="Twitter icon" class="w-6 h-6">
+				</a>
+				<a href="https://www.linkedin.com/in/yimnai-nerus-zaumu-436563145/" target="_blank">
+					<img src="/linkedin.svg" alt="Twitter icon" class="w-6 h-6">
+				</a>
+				<a href="https://github.com/Nerus-Zaumu" target="_blank">
+					<img src="/github.svg" alt="Twitter icon" class="w-6 h-6">
+				</a>
+				<img src="/hamburger-menu.svg" alt="More" class="w-10 md:hidden block" id="hamburger-menu">
 			</div>
 		</aside>
 		<section class="flex flex-col items-start justify-center md:w-[75%] w-full h-auto md:right-0 md:absolute overflow-y-scroll">
-			<div class="w-full flex items-center justify-center space-y-4 relative">
+			<div class="w-full flex items-center justify-center space-y-4 relative" id="home">
 				<div class="w-full h-screen bg-hero-image bg-cover brightness-50">
 				</div>
 				<div class="flex flex-col items-center justify-center space-y-3 absolute">
 					<h1 class="text-white text-4xl font-bold">Welcome</h1>
 					<p id="typed-text" class="text-white text-7xl text-center font-bold">I'm a Fullstack Web Developer</p>
 					<h1 class="text-white text-3xl font-light">Based in Buea, Cameroon</h1>
-					<a href="#" class="rounded-3xl py-3 px-6 text-bright-green font-bold hover:animate-btn-transform border-solid border-2 border-bright-green">Hire Me</a>
+					<a href="#contact" class="rounded-3xl py-3 px-6 text-bright-green font-bold hover:animate-btn-transform border-solid border-2 border-bright-green">Hire Me</a>
 				</div>
-				<img src="/down_arrow.svg" alt="Down Arrow" class="w-10 h-10 absolute bottom-0 animate-blink-arrow cursor-pointer">
+				<a href="#about" >
+					<img src="/down_arrow.svg" alt="Down Arrow" class="w-10 h-10 absolute bottom-0 animate-blink-arrow cursor-pointer">
+				</a>
 			</div>
-			<div class="w-full bg-white flex flex-col justify-center items-center space-y-12">
+			<div class="w-full bg-white flex flex-col justify-center items-center space-y-12" id="about">
 				<div class="flex flex-col items-center justify-center space-y-2  mt-24">
 					<h1 class="font-bold text-dark-green text-4xl">KNOW ME MORE</h1>
 					<span class="h-1 w-28 bg-bright-green"></span>
 				</div>
-				<div class="w-[90%] mx-auto flex md:flex-row flex-col items-start justify-center md:space-x-3 space-x-0 md:space-y-0 space-y-3">
+				<div class="w-[90%] mx-auto flex md:flex-row flex-col items-start justify-center md:space-x-6 space-x-0 md:space-y-0 space-y-3">
 					<div class="md:w-[60%] w-full py-2 space-y-4">
 						<h1 class="font-bold text-dark-green text-3xl">I'm <span class="text-bright-green">Yimnai Nerus,</span> a Web Developer</h1>
-						<p class="text-dark-gray font-mono dark:text-light-gray">I help you build brand for your business at an affordable price. Thousands of clients have procured exceptional results while working with our dedicated team. when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-
-							Delivering work within time and budget which meets client’s requirements is our moto. Lorem Ipsum has been the industry's standard dummy text ever when an unknown printer took a galley.</p>
+						<p class="text-dark-green font-light font-mono dark:text-light-gray text-justify">As a fullstack developer proficient in Angular and NestJS, I bring a wealth of knowledge and expertise to any web development project. With my skills and experience, I can help businesses build powerful, user-friendly websites and applications that deliver exceptional results. Whether you need a new website from scratch or want to optimize your existing platform, I am here to help you achieve your goals. I am dedicated to delivering high-quality work within budget and on time, ensuring that your project is a success. Contact me today to learn more about how I can help your business thrive online</p>
 					</div>
 					<div class="md:w-[40%] w-full py-2 space-y-4">
 						<h1>
 							<p class="border-solid border-b-2 border-b-light-gray pb-3 text-dark-gray text-xl"><span class="text-dark-greem font-bold">Name: </span> Yimnai Nerus</p>
 						</h1>
 						<h1>
-							<a class="border-solid border-b-2 border-b-light-gray pb-3 text-bright-green text-xl" href="mailto:neruszaumuy@gmail.com"><span class="text-dark-green font-bold">Email: </span> &nbsp; neruszaumuy@gmail.com</a>
+							<a class="border-solid border-b-2 border-b-light-gray pb-3 text-bright-green text-xl" href="mailto:neruszaumuy@gmail.com"><span class="text-dark-gray font-bold">Email: </span> &nbsp; neruszaumuy@gmail.com</a>
 						</h1>
 						<h1>
 							<p class="border-solid border-b-2 border-b-light-gray pb-3 text-dark-gray text-xl"><span class="text-dark-greem font-bold">Age: </span> 22</p>
@@ -135,7 +189,7 @@ const resumeData: Props[] = [
 					</div>
 				</div>
 			</div>
-			<div class="w-[50%] mx-auto py-4 my-4 flex items-center justify-between dark:bg-dark-gray">
+			<div class="w-[50%] mx-auto py-4 my-4 flex items-center justify-between dark:bg-dark-gray" id="what">
 				<span class="flex flex-col items-center justify-center">
 					<h1 class="text-6xl font-bold text-dark-green">8+</h1>
 					<h1 class="text-dark-gray">Months of Experience</h1>
@@ -147,7 +201,7 @@ const resumeData: Props[] = [
 				</span>
 			</div>
 
-			<div class="w-[90%] mx-auto py-4 mt-4">
+			<div class="w-[90%] mx-auto py-4 mt-4" id="resume">
 				<div class="flex flex-col items-center justify-center space-y-2  mt-24">
 					<h1 class="font-bold text-dark-green text-4xl">RESUME</h1>
 					<span class="h-1 w-28 bg-bright-green"></span>
@@ -192,7 +246,7 @@ const resumeData: Props[] = [
 					</div>
 				</div>
 
-				<div class="w-[90%] mx-auto">
+				<div class="w-[90%] mx-auto" id="portfolio">
 					<div class="flex flex-col items-center justify-center space-y-2  mt-24">
 						<h1 class="font-bold text-dark-green text-4xl">MY WORK</h1>
 						<span class="h-1 w-28 bg-bright-green"></span>
@@ -247,7 +301,7 @@ const resumeData: Props[] = [
 					</div>
 				</div>
 
-				<div class="w-[90%] mx-auto">
+				<div class="w-[90%] mx-auto" id="contact">
 					<div class="flex flex-col items-center justify-center space-y-2  mt-24">
 						<h1 class="font-bold text-dark-green text-4xl">GET IN TOUCH</h1>
 						<span class="h-1 w-28 bg-bright-green"></span>
@@ -273,22 +327,37 @@ const resumeData: Props[] = [
 							</span>
 						</div>
 						<div class="md:w-45% w-full flex flex-col pb-5">
-							<form action="" class="w-full flex flex-col items-center justify-center space-y-4 mt-4">
+							<form action="POST" class="w-full flex flex-col items-center justify-center space-y-4 mt-4">
 								<div class="flex md:flex-row flex-col items-center justify-between w-full space-y-3">
-									<input type="text" placeholder="Your Name" class="outline-none rounded-md shadow-sm hover:outline-none border-solid border-2 border-dark-gray md:w-[45%] w-full h-10">
-									<input type="email" placeholder="Your Email" class="outline-none rounded-md shadow-sm hover:outline-none border-solid border-2 border-dark-gray md:w-[45%] w-full h-10" required>
+									<input type="text" placeholder="Your Name" class="outline-none rounded-md shadow-sm hover:outline-none border-solid border-2 border-dark-gray md:w-[45%] w-full h-10" name="fullName" required>
+									<input type="email" placeholder="Your Email" class="outline-none rounded-md shadow-sm hover:outline-none border-solid border-2 border-dark-gray md:w-[45%] w-full h-10" required name="email">
 								</div>
 								<div class="w-full">
-								<textarea name="" id="" cols="30" rows="10" class="outline-none: focus:outline-none border-dark-gray border-solid border-2 rounded-md shadow-sm w-full"></textarea>
+								<textarea name="" id="" cols="30" rows="10" class="outline-none: focus:outline-none border-dark-gray border-solid border-2 rounded-md shadow-sm w-full" name="message" required	placeholder="Enter message here..."></textarea>
 								</div>
 								<div class="w-full flex items-center justify-center">
-									<input type="button" class="py-2 px-4 rounded-md shadow md text-bright-green border-solid border-2 border-bright-green hover:animate-btn-transform" value="Contact">
+									<input type="submit" class="py-2 px-4 rounded-md shadow md text-bright-green border-solid border-2 border-bright-green hover:animate-btn-transform" value="Contact">
 								</div>
 							</form>
 						</div>
 					</div>
 				</div>
-				
+				<div class="w-full py-8 bg-white flex items-center justify-center">
+					<span class="w-1/2 text-dark-green font-light">
+						Copyright © {new Date().getFullYear()} &nbsp; <span class="text-bright-green font-bold text-xl">yimnaidev.</span>&nbsp; All rights reserved.
+					</span>
+				</div>
+			</div>
+			<div class="w-full py-3 bg-dark-green absolute top-0 hidden flex-col items-start justify-start space-y-3" id="dropdown">
+				<span class="w-[90%] mx-auto flex items-end justify-end pb-3 cursor-pointer" id="close-hamburger">
+					<img src="/close.svg" alt="" class="w-10 h-10" id="close-hamburger">
+				</span>
+				<a href="#home" id="home-link" class="text-white border-solid border-b-2 border-b-white w-full pb-2">Home</a>
+				<a href="#about" id="about-link" class="text-white border-solid border-b-2 border-b-white w-full pb-2">About</a>
+				<a href="#what" id="what-link" class="text-white border-solid border-b-2 border-b-white w-full pb-2">What</a>
+				<a href="#resume" id="resume-link" class="text-white border-solid border-b-2 border-b-white w-full pb-2">Resume</a>
+				<a href="#portfolio" id="portfolio-link" class="text-white border-solid border-b-2 border-b-white w-full pb-2">Portfolio</a>
+				<a href="#contact" id="contact-link" class="text-white border-solid border-b-2 border-b-white w-full pb-2">Contact</a>
 			</div>
 		</section>
 	</main>
