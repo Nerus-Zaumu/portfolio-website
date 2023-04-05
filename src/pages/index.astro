@@ -76,11 +76,11 @@ const resumeData: Props[] = [
 	}
 
 	function isElementInTopThirdOfViewport(elem: HTMLElement): boolean {
-  const scrollY = window.scrollY || window.pageYOffset;
-  const elemTop = elem.getBoundingClientRect().top + scrollY;
-  const viewportHeight = window.innerHeight;
-  return (elemTop + elem.offsetHeight / 3) > scrollY && elemTop < scrollY + (viewportHeight / 3);
-}
+		const scrollY = window.scrollY || window.pageYOffset;
+		const elemTop = elem.getBoundingClientRect().top + scrollY;
+		const viewportHeight = window.innerHeight;
+		return (elemTop + elem.offsetHeight / 3) > scrollY && elemTop < scrollY + (viewportHeight / 3);
+	}
 
 document.addEventListener('click', (event: Event) => {
 	const sectionNavs = ['home-link', 'about-link', 'what-link', 'resume-link', 'portfolio-link', 'contact-link']
@@ -91,7 +91,7 @@ document.addEventListener('click', (event: Event) => {
 	}
 
 	sectionNavs.forEach((sectionNav) => {
-		if((event?.target as HTMLElement).id === sectionNav) {
+		if((event?.target as HTMLElement).classList.contains('nav')) {
 			dropdown.classList.toggle('flex')
 			dropdown.classList.toggle('hidden')
 		}
@@ -352,12 +352,12 @@ document.addEventListener('click', (event: Event) => {
 				<span class="w-[90%] mx-auto flex items-end justify-end pb-3 cursor-pointer" id="close-hamburger">
 					<img src="/close.svg" alt="" class="w-10 h-10" id="close-hamburger">
 				</span>
-				<a href="#home" id="home-link" class="text-white border-solid border-b-2 border-b-white w-full pb-2">Home</a>
-				<a href="#about" id="about-link" class="text-white border-solid border-b-2 border-b-white w-full pb-2">About</a>
-				<a href="#what" id="what-link" class="text-white border-solid border-b-2 border-b-white w-full pb-2">What</a>
-				<a href="#resume" id="resume-link" class="text-white border-solid border-b-2 border-b-white w-full pb-2">Resume</a>
-				<a href="#portfolio" id="portfolio-link" class="text-white border-solid border-b-2 border-b-white w-full pb-2">Portfolio</a>
-				<a href="#contact" id="contact-link" class="text-white border-solid border-b-2 border-b-white w-full pb-2">Contact</a>
+				<a href="#home" id="home-link" class="text-white border-solid border-b-2 border-b-white w-full pb-2 nav">Home</a>
+				<a href="#about" id="about-link" class="text-white border-solid border-b-2 border-b-white w-full pb-2 nav">About</a>
+				<a href="#what" id="what-link" class="text-white border-solid border-b-2 border-b-white w-full pb-2 nav">What</a>
+				<a href="#resume" id="resume-link" class="text-white border-solid border-b-2 border-b-white w-full pb-2 nav">Resume</a>
+				<a href="#portfolio" id="portfolio-link" class="text-white border-solid border-b-2 border-b-white w-full pb-2 nav">Portfolio</a>
+				<a href="#contact" id="contact-link" class="text-white border-solid border-b-2 border-b-white w-full pb-2 nav">Contact</a>
 			</div>
 		</section>
 	</main>
