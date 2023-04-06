@@ -5,10 +5,6 @@ export interface Props {
 
 const { title } = Astro.props;
 
-title: "Yimnaidev Web development portfolio"
-description: "Check out my portfolio site built with astro.build. I hope you enjoy it!"
-image: "/portfolio_site_preview.png"	
-
 ---
 
 <!DOCTYPE html>
@@ -18,9 +14,10 @@ image: "/portfolio_site_preview.png"
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<meta property="og:title" content="{{meta.title}}">
-  		<meta property="og:description" content="{{meta.description}}">
-  		<meta property="og:image" content="{{meta.image}}">
+		<meta property="og:title" content="Yimnaidev Web development portfolio">
+  		<meta property="og:description" content="Check out my portfolio site built with astro.build. I hope you enjoy it!">
+  		<meta property="og:image" content="/portfolio_site_preview.png">
+  		<meta property="og:url" content="https://portfolio.yimla.site">
 		<title>{title}</title>
 	</head>
 	<body>
