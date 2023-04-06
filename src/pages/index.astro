@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import 'typed.js'
 import Card from '../components/Card.astro';
+import emailjs from 'emailjs-com';
 
  interface Props {
 	timePeriod: string;
@@ -55,6 +56,9 @@ const resumeData: Props[] = [
 ---
 
 <script>
+import Typed from "typed.js"
+import emailjs from "emailjs-com"
+
 	(document as Document).addEventListener('scroll', managePath)
 	function managePath() {
 		const sections = ['#home', '#about', '#what', '#resume', '#portfolio', '#contact']
@@ -99,11 +103,23 @@ document.addEventListener('click', (event: Event) => {
 
 })
 
+emailjs.init('oc5pL_EwNEpdhdTL2');
+
+(document.getElementById('contact-form') as HTMLFormElement).addEventListener('submit', (event: Event) => {
+	event.preventDefault()
+	emailjs.sendForm('service_2cx64dj', 'template_jmpgskl', document.getElementById('contact-form') as HTMLFormElement).then((result) => {
+		console.log(result.text)
+	}, (error) => {
+		console.log(error.text)
+	})
+
+})
 </script>
 
 <Layout title="YimnaiDev Portfolio">
 
 	<client-only>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js" integrity="sha512-hIlMpy2enepx9maXZF1gn0hsvPLerXoLHdb095CmRY5HG3bZfN7XPBZ14g+TUDH1aGgfLyPHmY9/zuU53smuMw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<script>
 			import Typed from 'typed.js'
@@ -120,7 +136,7 @@ document.addEventListener('click', (event: Event) => {
 	</client-only>
 
 	<main class="w-full flex md:flex-row flex-col items-start justify-center relative">
-		<aside class="md:w-[25%] w-full md:h-screen bg-dark-green flex md:flex-col md:items-center md:justify-start md:space-y-3 md:py-8 py-3 px-3 item-center justify-between md:fixed md:left-0">
+		<aside class="md:w-[25%] w-full md:h-screen bg-dark-green flex md:flex-col md:items-center md:justify-start md:space-y-3 md:py-8 py-3 px-3 item-center justify-between fixed top-0 z-50 md:fixed md:left-0">
 			<div class="rounded-full hidden md:block border-solid border-8 border-dark-gray">
 				<img src="/face.jpeg" alt="Yimnai Nerus" class="rounded-full w-36 h-36 object-cover object-center">
 			</div>
@@ -151,7 +167,7 @@ document.addEventListener('click', (event: Event) => {
 		</aside>
 		<section class="flex flex-col items-start justify-center md:w-[75%] w-full h-auto md:right-0 md:absolute overflow-y-scroll">
 			<div class="w-full flex items-center justify-center space-y-4 relative" id="home">
-				<div class="w-full h-screen bg-hero-image bg-cover brightness-50">
+				<div class="w-full h-screen bg-hero-image bg-cover bg-center brightness-50">
 				</div>
 				<div class="flex flex-col items-center justify-center space-y-3 absolute">
 					<h1 class="text-white text-4xl font-bold">Welcome</h1>
@@ -191,7 +207,7 @@ document.addEventListener('click', (event: Event) => {
 			</div>
 			<div class="w-[50%] mx-auto py-4 my-4 flex items-center justify-between dark:bg-dark-gray" id="what">
 				<span class="flex flex-col items-center justify-center">
-					<h1 class="text-6xl font-bold text-dark-green">8+</h1>
+					<h1 class="text-6xl font-bold text-dark-green" id="count-exp">8+</h1>
 					<h1 class="text-dark-gray">Months of Experience</h1>
 				</span>
 				<span class="w-1 h-24 bg-bright-green dark:bg-dark-gray"></span>
@@ -327,13 +343,14 @@ document.addEventListener('click', (event: Event) => {
 							</span>
 						</div>
 						<div class="md:w-45% w-full flex flex-col pb-5">
-							<form action="POST" class="w-full flex flex-col items-center justify-center space-y-4 mt-4">
+							<form action="POST" class="w-full flex flex-col items-center justify-center space-y-4 mt-4" id="contact-form">
 								<div class="flex md:flex-row flex-col items-center justify-between w-full space-y-3">
-									<input type="text" placeholder="Your Name" class="outline-none rounded-md shadow-sm hover:outline-none border-solid border-2 border-dark-gray md:w-[45%] w-full h-10" name="fullName" required>
-									<input type="email" placeholder="Your Email" class="outline-none rounded-md shadow-sm hover:outline-none border-solid border-2 border-dark-gray md:w-[45%] w-full h-10" required name="email">
+									<input type="hidden" class="hidden" name="to_name" value="YimnaiDev">
+									<input type="text" placeholder="Your Name" class="outline-none rounded-md shadow-sm hover:outline-none border-solid border-2 border-dark-gray md:w-[45%] w-full h-10" name="from_name" required id="from_name">
+									<input type="email" placeholder="Your Email" class="outline-none rounded-md shadow-sm hover:outline-none border-solid border-2 border-dark-gray md:w-[45%] w-full h-10" required name="user_email" id="user_email">
 								</div>
 								<div class="w-full">
-								<textarea name="" id="" cols="30" rows="10" class="outline-none: focus:outline-none border-dark-gray border-solid border-2 rounded-md shadow-sm w-full" name="message" required	placeholder="Enter message here..."></textarea>
+								<textarea name="message" id="message" cols="30" rows="10" class="outline-none: focus:outline-none border-dark-gray border-solid border-2 rounded-md shadow-sm w-full" required	placeholder="Enter message here..."></textarea>
 								</div>
 								<div class="w-full flex items-center justify-center">
 									<input type="submit" class="py-2 px-4 rounded-md shadow md text-bright-green border-solid border-2 border-bright-green hover:animate-btn-transform" value="Contact">

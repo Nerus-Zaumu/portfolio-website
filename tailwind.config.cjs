@@ -18,7 +18,7 @@ module.exports = {
 				'light-gray': '#EDF0F1',
 			},
 			backgroundImage:{
-				'hero-image': "url('/hero_image.jpg')"
+				'hero-image': "url('/hero_image.jpeg')"
 			},
 			width: {
 				'a': '50%',
