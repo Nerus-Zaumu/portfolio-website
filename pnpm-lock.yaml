@@ -16,6 +16,9 @@ dependencies:
   tailwindcss:
     specifier: ^3.0.24
     version: 3.3.1(postcss@8.4.21)
+  toast-me:
+    specifier: ^1.5.0
+    version: 1.5.0
   typed.js:
     specifier: ^2.0.15
     version: 2.0.15
@@ -3029,6 +3032,10 @@ packages:
     engines: {node: '>=8.0'}
     dependencies:
       is-number: 7.0.0
+    dev: false
+
+  /toast-me@1.5.0:
+    resolution: {integrity: sha512-fvLRu/OqZqyrbyE7MbGgOFk7OHKkiKvtYyKO5SYBR/lA9C2Rwk2hXwTDdYupmaRu49u4gbP2CoNh+ciYUI1P/g==}
     dev: false
 
   /trim-lines@3.0.1:
