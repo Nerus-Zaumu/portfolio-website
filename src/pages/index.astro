@@ -31,25 +31,25 @@ const resumeData: Props[] = [
 		timePeriod: '2012-2018',
 		subject: 'Secondary School',
 		place: 'Bamenda',
-		detail: "I was a secondary student at the Presbyterian Secondary Nkwen In Bamenda. I got my Ordinary Level Certificate whilst being a student there"
+		detail: "During my academic tenure, I attended Presbyterian Secondary Nkwen located in Bamenda, where I successfully completed my secondary education. As a result, I obtained my Ordinary Level Certificate."
 	},
 	{
 		timePeriod: '2018-2020',
 		subject: 'High School',
 		place: 'Douala',
-		detail: "Attended Government Bilingual High School Bonaberi. I later got my Advanced Level Certificate towards the end of 2020 from this school"
+		detail: "I had the privilege of attending Government Bilingual High School Bonaberi, where I completed my secondary education. Towards the end of 2020, I obtained my Advanced Level Certificate from the aforementioned institution."
 	},
 	{
 		timePeriod: '2020-Present',
 		subject: 'Software Engineering',
 		place: 'Buea',
-		detail: "Been an Engineering student at the university of Buea since November 2020. Will be completing the program by the June of 2024"
+		detail: "Since November 2020, I have been enrolled as an Engineering student at the University of Buea. I am currently pursuing my degree in Engineering, and I am expected to complete the program by June of 2024."
 	},
 	{
 		timePeriod: 'June 2022-November 2022',
 		subject: 'Internship',
 		place: 'Buea',
-		detail: "I interned at Ciniter, a local Fintech startup here in Buea. I worked as a Web developer with other interns and senior developers. "
+		detail: "At Ciniter Fintech, I gained valuable skills as a web development intern in Buea. Working with senior developers, I contributed to meaningful projects and gained industry insights."
 	}
 ]
 
@@ -145,7 +145,7 @@ contactForm.addEventListener('submit', (event: Event) => {
 			<div class="rounded-full hidden md:block border-solid border-8 border-dark-gray">
 				<img src="/face.jpeg" alt="Yimnai Nerus" class="rounded-full w-36 h-36 object-cover object-center">
 			</div>
-			<div class="font-bold text-xl text-white text-center">
+			<div class="font-bold text-sm md:text-xl text-white text-center flex items-center justify-center">
 				Yimnai Nerus Zaumu
 			</div>
 			<div class="hidden md:flex flex-col items-center justify-center space-y-6 mt-6">
@@ -180,9 +180,6 @@ contactForm.addEventListener('submit', (event: Event) => {
 					<h1 class="text-white text-3xl font-light">Based in Buea, Cameroon</h1>
 					<a href="#contact" class="rounded-3xl py-3 px-6 text-bright-green font-bold hover:animate-btn-transform border-solid border-2 border-bright-green">Hire Me</a>
 				</div>
-				<a href="#about" >
-					<img src="/down_arrow.svg" alt="Down Arrow" class="w-10 h-10 absolute bottom-0 animate-blink-arrow cursor-pointer">
-				</a>
 			</div>
 			<div class="w-full bg-white flex flex-col justify-center items-center space-y-12" id="about">
 				<div class="flex flex-col items-center justify-center space-y-2  mt-24">
@@ -210,7 +207,7 @@ contactForm.addEventListener('submit', (event: Event) => {
 					</div>
 				</div>
 			</div>
-			<div class="w-[50%] mx-auto py-4 my-4 flex items-center justify-between dark:bg-dark-gray" id="what">
+			<div class="w-full md:w-[50%] mx-auto py-4 my-4 flex items-center justify-between" id="what">
 				<span class="flex flex-col items-center justify-center">
 					<h1 class="text-6xl font-bold text-dark-green" id="count-exp">8+</h1>
 					<h1 class="text-dark-gray">Months of Experience</h1>
@@ -227,7 +224,7 @@ contactForm.addEventListener('submit', (event: Event) => {
 					<h1 class="font-bold text-dark-green text-4xl">RESUME</h1>
 					<span class="h-1 w-28 bg-bright-green"></span>
 				</div>
-				<div class="w-full mt-6 flex items-center justify-center flex-wrap py-2 px-2">
+				<div class="w-full mt-6 grid grid-cols-2 grid-flow-row py-2 px-2">
 					{resumeData.map((item: Props) => (
 						<Card timePeriod={item.timePeriod} place={item.place} detail={item.detail} subject={item.subject}/>
 					))}
@@ -352,11 +349,11 @@ contactForm.addEventListener('submit', (event: Event) => {
 							<form action="POST" class="w-full flex flex-col items-center justify-center space-y-4 mt-4" id="contact-form">
 								<div class="flex md:flex-row flex-col items-center justify-between w-full space-y-3">
 									<input type="hidden" class="hidden" name="to_name" value="YimnaiDev">
-									<input type="text" placeholder="Your Name" class="outline-none rounded-md shadow-sm hover:outline-none border-solid border-2 border-dark-gray md:w-[45%] w-full h-10" name="from_name" required id="from_name">
-									<input type="email" placeholder="Your Email" class="outline-none rounded-md shadow-sm hover:outline-none border-solid border-2 border-dark-gray md:w-[45%] w-full h-10" required name="user_email" id="user_email">
+									<input type="text" placeholder="Your Name" class="outline-none rounded-md shadow-sm focus:border-bright-green border-solid border-2 border-dark-gray md:w-[45%] w-full h-10" name="from_name" required id="from_name">
+									<input type="email" placeholder="Your Email" class="outline-none rounded-md shadow-sm hover:outline-none border-solid border-2 border-dark-gray md:w-[45%] w-full h-10 focus:border-bright-green" required name="user_email" id="user_email">
 								</div>
 								<div class="w-full">
-								<textarea name="message" id="message" cols="30" rows="10" class="outline-none: focus:outline-none border-dark-gray border-solid border-2 rounded-md shadow-sm w-full" required	placeholder="Enter message here..."></textarea>
+								<textarea name="message" id="message" cols="30" rows="10" class="outline-none: focus:outline-none border-dark-gray border-solid border-2 rounded-md shadow-sm w-full focus:border-bright-green" required	placeholder="Enter message here..."></textarea>
 								</div>
 								<div class="w-full flex items-center justify-center">
 									<input type="submit" class="py-2 px-4 rounded-md shadow md text-bright-green border-solid border-2 border-bright-green hover:animate-btn-transform" value="Contact">
@@ -369,7 +366,7 @@ contactForm.addEventListener('submit', (event: Event) => {
 					</div>
 				</div>
 				<div class="w-full py-8 bg-white flex items-center justify-center">
-					<span class="w-1/2 text-dark-green font-light">
+					<span class="w-full text-dark-green font-light">
 						Copyright © {new Date().getFullYear()} &nbsp; <span class="text-bright-green font-bold text-xl">yimnaidev.</span>&nbsp; All rights reserved.
 					</span>
 				</div>
